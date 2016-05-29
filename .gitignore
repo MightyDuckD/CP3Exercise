@@ -1,2 +1,6 @@
 #Ignore all the temporary files
 *~
+#Ignore all executables
+*.exe
+*.app
+*.out
