@@ -1,2 +1,2 @@
-# cp3
+# CP3Exercise
 Competitive Programming 3 Exercise
