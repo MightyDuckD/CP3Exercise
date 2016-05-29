@@ -15,7 +15,6 @@ using namespace std;
 #endif
 
 struct debugger {
-
     template<typename T> debugger& operator,(const T& v) {
         cerr << v << " ";
         return *this;
@@ -31,10 +30,7 @@ struct debugger {
 #define REPN(i,n)       FORN(i,1,n)
 #define REPD(i,n)       FORD(i,n,1)
 
-#define ALL(c)          (c).begin(), (c).end()  
-#define SIZE(c)         ((int)(c).size())
-#define LEN(c)          ((int)(c).length())
-
+#define all(c)          (c).begin(), (c).end()
 #define fi              first
 #define se              second
 #define sz(x)           ((int)((x).size()))
