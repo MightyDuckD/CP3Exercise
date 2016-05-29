@@ -1,0 +1,173 @@
+/*
+ * Author: Simon Lehner-Dittenberger <simon.lehnerd@gmail.com>
+ */
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#ifdef DEBUG
+#define debug(args...)            {dbg,args; cerr<<endl;}
+#define D(args...)                printf(args)
+#else
+#define debug(args...)            // Just strip off all debug tokens
+#define D(args...)
+#endif
+
+struct debugger {
+
+    template<typename T> debugger& operator,(const T& v) {
+        cerr << v << " ";
+        return *this;
+    }
+} dbg;
+
+#define FORIT(i,obj)    for(auto i = (obj).begin(); i != (obj).end(); ++i)
+#define FORITD(i,obj)   for(auto i = (obj).rbegin(); i != (obj).rend(); ++i)
+#define FOR(i,a,b)      for(int (i) = (a); (i) < (b); (i)++)
+#define FORN(i,a,b)     for(int (i) = (a); (i) <= (b); (i)++)
+#define FORD(i,a,b)     for(int (i) = (a); (i) >= (b); (i)--)
+#define REP(i,n)        FOR(i,0,n)
+#define REPN(i,n)       FORN(i,1,n)
+#define REPD(i,n)       FORD(i,n,1)
+
+#define ALL(c)          (c).begin(), (c).end()  
+#define SIZE(c)         ((int)(c).size())
+#define LEN(c)          ((int)(c).length())
+
+#define fi              first
+#define se              second
+#define sz(x)           ((int)((x).size()))
+#define pb              push_back 
+#define mp              make_pair 
+
+#define all(c) ALL(c)
+#define contains(container,value) (find(all(container),value) != (container).end())
+
+void dump(set<char> v) {
+	cout << "c: ";
+	for(auto c : v)
+    	cout << ' ' << c;
+  	cout << endl;
+}
+
+void dump(vector<char> v) {
+	cout << "c: ";
+	for (unsigned i=0; i<v.size(); ++i)
+    	cout << ' ' << v[i];
+  	cout << endl;
+}
+
+
+void dump(vector<int> v,string o) {
+	cout << "v: ";
+	for (unsigned i=0; i<v.size(); ++i)
+    	cout << ' ' << v[i];
+  	cout << ' ' << o << endl;
+}
+
+vector<int> eq(string a, string b) {
+	vector<int> v(12);
+	for(char c : a)
+		v[c-'A']++;
+	for(char c : b)
+		v[c-'A']--;
+	return v;
+}
+
+pair<char,int> doit(string s[9]) {
+	vector<char> coins;
+	set<char> up,down;
+	REP(i,12) 
+		coins.pb((char)('A'+i));
+	REP(i,3) {
+		if(s[i*3 + 2].compare("even") == 0) {
+			for(char c : s[i*3]) {
+				auto o = find(all(coins),c);
+				if(o != coins.end())
+					coins.erase(o);
+			}
+			for(char c : s[i*3+1]) {
+				auto o = find(all(coins),c);
+				if(o != coins.end())
+					coins.erase(o);
+			}
+		}
+		if(s[i*3 + 2].compare("up") == 0) {
+			for(char c : s[i*3+1])
+				up.insert(c);
+			for(char c : s[i*3])
+				down.insert(c);
+		}
+		if(s[i*3 + 2].compare("down") == 0) {
+			for(char c : s[i*3])
+				up.insert(c);
+			for(char c : s[i*3+1])
+				down.insert(c);
+		}
+	}
+	dump(coins);
+	dump(up);
+	dump(down);
+	for(auto c : coins) {
+		if(contains(up,c))
+			return mp(c,-1);
+		if(contains(down,c))
+			return mp(c,1);
+	}
+	return mp('X',0);
+}
+
+int main() {
+	int N;
+	scanf("%d\n",&N);
+	REP(n,N) {
+		string c[9];
+		REP(i,9) cin >> c[i];
+		auto res = doit(c);
+		printf("%c is the counterfeit coin and it is %s.\n",res.first,res.second<0?"light":"heavy");
+	}
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

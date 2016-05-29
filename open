@@ -1,0 +1,24 @@
+#!/bin/bash
+
+uva="uva"$1
+num=$1
+vol=${num:0:-2}
+isnumber='^[0-9]+$'
+
+if ! [[ $num =~ $isnumber ]] ; then
+	echo "error: arg1 not a number"; exit 1
+fi
+
+if  [ ! -f src/$uva.cpp ]; then
+	echo "creating file src/$uva.cpp"
+	cp template.cpp src/$uva.cpp
+fi
+
+gnome-open https://uva.onlinejudge.org/external/$vol/$num.pdf > /dev/null 2>&1
+
+if [ ! -f in/$uva.1 ]; then
+	echo "creating file in/$uva.1"
+	nano in/$uva.1
+fi
+
+gnome-open src/$uva.cpp
