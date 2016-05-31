@@ -31,7 +31,7 @@ struct debugger {
 #define REPN(i,n)       FORN(i,1,n)
 #define REPD(i,n)       FORD(i,n,1)
 
-#define ALL(c)          (c).begin(), (c).end()  
+#define all(c)          (c).begin(), (c).end()  
 #define SIZE(c)         ((int)(c).size())
 #define LEN(c)          ((int)(c).length())
 
